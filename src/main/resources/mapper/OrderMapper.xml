@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.singfung.blackfriday.dao.OrderDAO">
+
+    <resultMap type="com.singfung.blackfriday.model.Order" id="baseMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="userId" jdbcType="INTEGER"/>
+        <result property="productId" column="productId" jdbcType="INTEGER"/>
+        <result property="itemsNum" column="itemsNum" jdbcType="INTEGER"/>
+        <result property="orderTime" column="orderTime" jdbcType="TIMESTAMP"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into orderinfo
+        (id, userId, productId, itemsNum, orderTime, note)
+        values
+        (#{id}, #{userId}, #{productId}, #{itemsNum}, #{orderTime}, #{note})
+    </insert>
+
+    <insert id="batchInsert" parameterType="list">
+        insert into orderinfo
+        (id, userId, productId, itemsNum, orderTime, note)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{id}, #{userId}, #{productId}, #{itemsNum}, #{orderTime}, #{note})
+        </foreach>
+    </insert>
+
+</mapper>
