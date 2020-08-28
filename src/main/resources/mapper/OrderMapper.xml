@@ -19,11 +19,11 @@
     </insert>
 
     <insert id="batchInsert" parameterType="list">
-        insert into orderinfo
+        insert into `orderinfo`
         (id, userId, productId, itemsNum, orderTime, note)
         values
         <foreach collection="list" item="item" separator=",">
-            (#{id}, #{userId}, #{productId}, #{itemsNum}, #{orderTime}, #{note})
+            (#{item.id}, #{item.userId}, #{item.productId}, #{item.itemsNum}, #{item.orderTime}, #{item.note})
         </foreach>
     </insert>
 
