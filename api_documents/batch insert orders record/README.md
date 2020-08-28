@@ -17,3 +17,5 @@
 	"itemsNum": 1
 }]
 ```
+
+**Note** : `id` will be generated automatically
