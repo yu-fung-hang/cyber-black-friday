@@ -8,7 +8,8 @@
 ```
 {
 	"totalNum": 20000,
-	"stockNum": 20000
+	"stockNum": 20000,
+	"name": "AAA"
 }
 ```
 
@@ -16,4 +17,5 @@
 * `id` will be generated automatically ;
 * `totalNum` should be larger than 0 ;
 * `stockNum` should be larger than 0 ;
-* `totalNum` should be equal to `stockNum`.
+* `totalNum` should be equal to `stockNum` ;
+* `name` should be unique.
