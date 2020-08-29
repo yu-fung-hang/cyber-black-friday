@@ -8,8 +8,7 @@
 ```
 {
 	"totalNum": 20000,
-	"stockNum": 20000,
-	"version": 0
+	"stockNum": 20000
 }
 ```
 
