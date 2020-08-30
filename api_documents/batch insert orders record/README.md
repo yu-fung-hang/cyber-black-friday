@@ -1,6 +1,6 @@
 # Batch Insert Orders record
 
-**URL** : `http://localhost:8080/blackfriday/orders`
+**URL** : `http://localhost:8080/blackfriday/order`
 
 **HTTP Method** : `POST`
 
@@ -18,4 +18,7 @@
 }]
 ```
 
-**Note** : `id` will be generated automatically
+**Note** : 
+* `id` will be generated automatically ;
+* `productId` refers to Stock's `id`, and it should exist ;
+* `itemsNum` should be positive.

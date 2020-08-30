@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 
 @Controller
-@RequestMapping("/blackfriday")
+@RequestMapping("/blackfriday/order")
 public class OrderController
 {
 	@Autowired
@@ -32,7 +32,7 @@ public class OrderController
 		return resultMap;
 	}
 
-	@PostMapping(value = "/orders")
+	@PostMapping("")
 	@ResponseBody
 	public ResponseEntity<Result<Object>> add(@RequestBody List<Order> orders)
 	{
