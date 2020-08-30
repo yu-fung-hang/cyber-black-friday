@@ -6,15 +6,36 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="totalNum" column="totalNum" jdbcType="INTEGER"/>
         <result property="stockNum" column="stockNum" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="version" column="version" jdbcType="INTEGER"/>
         <result property="note" column="note" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="insert">
-        insert into stock
-        (id, totalNum, stockNum, version, note)
+        insert into `stock`
+        (`id`, `totalNum`, `stockNum`, `name`, `version`, `note`)
         values
-        (#{id}, #{totalNum}, #{stockNum}, #{version}, #{note})
+        (#{id}, #{totalNum}, #{stockNum}, #{name}, #{version}, #{note})
     </insert>
+
+    <select id="select" resultMap="baseMap">
+        select * from stock where id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.singfung.blackfriday.model.Stock">
+        update stock
+        <set>
+            <if test="name != null">
+                `name` = #{name},
+            </if>
+            totalNum = #{totalNum},
+            stockNum = #{stockNum}
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="selectAll" resultMap="baseMap">
+        select * from stock
+    </select>
 
 </mapper>
