@@ -16,6 +16,6 @@ Increase the number of stock. Both `totalNum` and `stockNum` will be increased b
 ```
 
 **Notes** :
-* `id` should exist;
-* `increment` should be positive;
+* `id` should exist ;
+* `increment` should be positive ;
 * `name` is optional.
