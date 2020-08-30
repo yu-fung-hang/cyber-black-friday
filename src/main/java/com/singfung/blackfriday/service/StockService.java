@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface StockService
 {	
-//	public Stock getStock(Long id);
-//
+	Stock findById(int id);
+
 //	public int decreaseStockNum(Long id);
 
-//	List<Stock> findAll();
+	List<Stock> findAll();
 
 	void save(Stock stock);
 
-//	void update(Stock stock);
-//
+	void update(Stock stock);
+
 //	void deleteByIds(List<String> ids);
 }
