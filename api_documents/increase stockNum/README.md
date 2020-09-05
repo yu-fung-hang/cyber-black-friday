@@ -2,7 +2,7 @@
 
 Increase the number of stock. Both `totalNum` and `stockNum` will be increased by `increment`. 
 
-**URL** : `http://localhost:8080/blackfriday/stock`
+**URL** : `http://localhost:8081/blackfriday/stock`
 
 **HTTP Method** : `PUT`
 
