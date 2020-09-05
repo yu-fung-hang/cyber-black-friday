@@ -8,7 +8,7 @@ public interface StockService
 {	
 	Stock findById(int id);
 
-//	public int decreaseStockNum(Long id);
+	void decreaseStockNum(int id, int decrement);
 
 	List<Stock> findAll();
 

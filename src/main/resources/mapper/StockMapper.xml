@@ -38,4 +38,12 @@
         select * from stock
     </select>
 
+    <update id="decreaseStockNum" parameterType="com.singfung.blackfriday.model.Stock">
+        update stock
+        <set>
+            stockNum = #{stockNum}
+        </set>
+        where id = #{id}
+    </update>
+
 </mapper>

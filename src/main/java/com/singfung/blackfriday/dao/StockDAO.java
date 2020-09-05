@@ -15,6 +15,6 @@ public interface StockDAO
 	int insert(Stock stock);
 
 	int update(Stock stock);
-//
-//	int delete(String id);
+
+	int decreaseStockNum(Stock stock);
 }

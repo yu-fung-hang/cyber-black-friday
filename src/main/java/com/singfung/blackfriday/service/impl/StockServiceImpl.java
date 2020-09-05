@@ -49,4 +49,14 @@ public class StockServiceImpl implements StockService
     {
         return stockDAO.selectAll();
     }
+
+    @Override
+    public void decreaseStockNum(int id, int decrement)
+    {
+        Stock stock = findById(id);
+
+        stock.setStockNum(stock.getStockNum() - decrement);
+
+        stockDAO.decreaseStockNum(stock);
+    }
 }
