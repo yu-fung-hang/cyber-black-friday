@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import redis.clients.jedis.Jedis;
 
 import java.util.List;
 
@@ -80,5 +81,25 @@ public class StockController
 			if(stock.getName().equals(name))
 			{ throw new BusinessException("Conflict : This product is already in db, operation failed."); }
 		}
+	}
+
+	//Load Stock information to Redis
+ 	@PutMapping("to-redis")
+	@ResponseBody
+	public ResponseEntity<Result<Object>> toRedis()
+	{
+		List<Stock> stock_list = stockService.findAll();
+		Jedis jedis = new Jedis("localhost",6379);
+
+		for(Stock stock : stock_list)
+		{
+			int stockId = stock.getId();
+			String key = "stock_" + stockId;
+			String field = "stockNum";
+			String value = "" + stock.getStockNum();
+			jedis.hset(key, field, value);
+		}
+
+		return ResponseEntity.status(HttpStatus.OK).body(Result.success("success"));
 	}
 }

@@ -80,6 +80,4 @@ public class OrderController
 		orderService.batchSave(orders);
 		return ResponseEntity.status(HttpStatus.OK).body(Result.success("success"));
 	}
-
-
 }
