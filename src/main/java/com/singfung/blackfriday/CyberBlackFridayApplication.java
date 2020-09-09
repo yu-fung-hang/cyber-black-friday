@@ -19,12 +19,12 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableScheduling
 @EnableAsync
-public class OnlineBlackFridayApplication
+public class CyberBlackFridayApplication
 {
     public static void main(String[] args)
     {
         initDataBase();
-        SpringApplication.run(OnlineBlackFridayApplication.class, args);
+        SpringApplication.run(CyberBlackFridayApplication.class, args);
     }
 
     private static void initDataBase()

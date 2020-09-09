@@ -3,6 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Online Black Friday</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+        </script>
 		<script>
 			function buy()
 			{
@@ -15,7 +17,7 @@
 				var stockId = document.getElementById("stockId").value;
 				var userNum = document.getElementById("userNum").value;
 			
-				document.getElementById("info").innerHTML = 'Start sending requests...';
+				document.getElementById("info").innerHTML = 'Start sending requests...    -    ' + Date();
 				for (var i=1; i<=userNum; i++)
 				{
 					var Http = new XMLHttpRequest();
@@ -23,7 +25,33 @@
 					Http.open("POST", url);
 					Http.send();
 				}
-				document.getElementById("complete").innerHTML = 'Complete!';
+				document.getElementById("complete").innerHTML = 'Complete!    -    ' + Date();
+			}
+			
+			function buy2()
+			{
+				if(validate("stockId") == false) {return;}
+				if(validate("userNum") == false) {return;}
+			
+				document.getElementById("complete").innerHTML = '';
+				document.getElementById("info").innerHTML = '';
+			
+				var stockId = document.getElementById("stockId").value;
+				var userNum = document.getElementById("userNum").value;
+			
+				document.getElementById("info").innerHTML = 'Start sending requests...    -    ' + Date();
+				for (var i=1; i<=userNum; i++)
+				{
+					var settings = 
+					{
+						"url": 'http://localhost:8081/blackfriday/order/'+ stockId +'/redis-order/'+ i,
+						"method": "POST",
+						"timeout": 0,
+					};
+
+					$.ajax(settings).done(function (response) {});
+				}
+				document.getElementById("complete").innerHTML = 'Complete!    -    ' + Date();
 			}
 			
 			function validate(id)

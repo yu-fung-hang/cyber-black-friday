@@ -6,12 +6,12 @@ import com.singfung.blackfriday.model.Stock;
 import com.singfung.blackfriday.service.StockService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import redis.clients.jedis.Jedis;
 
 import java.util.List;
 
@@ -22,6 +22,8 @@ public class StockController
 {
 	@Autowired
 	private StockService stockService = null;
+	@Autowired
+	private RedisTemplate redisTemplate;
 
 	@PostMapping("")
 	@ResponseBody
@@ -33,6 +35,9 @@ public class StockController
 		uniqueName(stock.getName());
 
 		stockService.save(stock);
+
+		toRedis();
+
 		return ResponseEntity.status(HttpStatus.OK).body(Result.success("success"));
 	}
 
@@ -55,6 +60,8 @@ public class StockController
 		dbStock.setName(name);
 
 		stockService.update(dbStock);
+
+		toRedis();
 
 		return ResponseEntity.status(HttpStatus.OK).body(Result.success("success"));
 	}
@@ -89,7 +96,6 @@ public class StockController
 	public ResponseEntity<Result<Object>> toRedis()
 	{
 		List<Stock> stock_list = stockService.findAll();
-		Jedis jedis = new Jedis("localhost",6379);
 
 		for(Stock stock : stock_list)
 		{
@@ -97,7 +103,7 @@ public class StockController
 			String key = "stock_" + stockId;
 			String field = "stockNum";
 			String value = "" + stock.getStockNum();
-			jedis.hset(key, field, value);
+			redisTemplate.opsForHash().put(key, field, value);
 		}
 
 		return ResponseEntity.status(HttpStatus.OK).body(Result.success("success"));

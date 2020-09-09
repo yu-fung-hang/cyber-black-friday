@@ -21,26 +21,25 @@ import redis.clients.jedis.Jedis;
 public class StockRedisServiceImpl implements StockRedisService
 {
 	private static final String PREFIX = "order_list_";
-	// 每次取出1000条，避免一次取出消耗太多内存
+	// Load 1000 records every time
 	private static final int TIME_SIZE = 1000;
 
 	@Autowired
-	private RedisTemplate redisTemplate = null; // RedisTemplate
+	private RedisTemplate redisTemplate = null;
 	@Autowired
 	private StockService stockService = null;
 	@Autowired
 	private OrderService orderService = null;
 
 	@Override
-	// 开启新线程运行
 	@Async
 	public void saveOrdersFromRedisToDB(int stockId)
 	{
-		System.err.println("开始保存数据");
+		System.err.println("Start saving the orders into DB...");
 		Long start = System.currentTimeMillis();
-		// 获取列表操作对象
+
 		BoundListOperations ops = redisTemplate.boundListOps(PREFIX + stockId);
-		Jedis jedis = new Jedis("localhost",6379);
+//		Jedis jedis = new Jedis("localhost",6379);
 		Long size = ops.size();
 		Long times = size % TIME_SIZE == 0 ? size / TIME_SIZE : size / TIME_SIZE + 1;
 		int count = 0;
@@ -48,21 +47,19 @@ public class StockRedisServiceImpl implements StockRedisService
 		
 		for (int i = 0; i < times; i++) 
 		{
-			// 获取至多TIME_SIZE个抢红包信息
 			List<String> userIdList = null;
 
 			if(i == 0)
 			{
-//				userIdList = ops.range(i * TIME_SIZE, (i + 1) * TIME_SIZE);
-				userIdList = jedis.lrange(PREFIX + stockId, i * TIME_SIZE, (i + 1) * TIME_SIZE);
+//				userIdList = jedis.lrange(PREFIX + stockId, i * TIME_SIZE, (i + 1) * TIME_SIZE);
+				userIdList = redisTemplate.opsForList().range(PREFIX + stockId, i * TIME_SIZE, (i + 1) * TIME_SIZE);
 			} else {
-//				userIdList = ops.range(i * TIME_SIZE + 1, (i + 1) * TIME_SIZE);
-				userIdList = jedis.lrange(PREFIX + stockId, i * TIME_SIZE + 1, (i + 1) * TIME_SIZE);
+//				userIdList = jedis.lrange(PREFIX + stockId, i * TIME_SIZE + 1, (i + 1) * TIME_SIZE);
+				userIdList = redisTemplate.opsForList().range(PREFIX + stockId, i * TIME_SIZE + 1, (i + 1) * TIME_SIZE);
 			}
 			
 			orderList.clear();
-			
-			// 保存红包信息
+
 			for (int j = 0; j < userIdList.size(); j++) 
 			{
 				String args = userIdList.get(j).toString();
@@ -71,7 +68,7 @@ public class StockRedisServiceImpl implements StockRedisService
 				String timeStr = arr[1];
 				int userId = Integer.parseInt(userIdStr);
 				Long time = Long.parseLong(timeStr);
-				// 生成抢红包信息
+
 				Order order = new Order();
 				order.setProductId(stockId);
 				order.setUserId(userId);
@@ -79,13 +76,13 @@ public class StockRedisServiceImpl implements StockRedisService
 				order.setOrderTime(new Timestamp(time));
 				orderList.add(order);
 			}
-			// 插入抢红包信息
+
 			count += executeBatch(orderList);
 		}
-		// 删除Redis列表
+
 		redisTemplate.delete(PREFIX + stockId);
 		Long end = System.currentTimeMillis();
-		System.err.println("保存数据结束，耗时" + (end - start) + "毫秒，共" + count + "条记录被保存。");
+		System.err.println("End, costing " + (end - start) + " ms, with " + count + " records saved.");
 	}
 
 	private int executeBatch(List<Order> orderList)
