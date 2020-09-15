@@ -24,5 +24,4 @@ create table OrderInfo
     primary key (id)
 );
 
-insert into stock(totalNum, stockNum, name, version, note)
-values (20000, 20000, 'AAA', 0, NULL)
+insert into stock(totalNum, stockNum, name, version, note) values (20000, 20000, 'AAA', 0, NULL);
