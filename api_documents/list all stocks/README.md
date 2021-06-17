@@ -5,7 +5,7 @@
 **HTTP Method** : `GET`
 
 **Output Example** :
-```
+```json
 [
     {
         "id": 1,

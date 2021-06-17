@@ -5,7 +5,7 @@
 **HTTP Method** : `POST`
 
 **Body Example** :
-```
+```json
 {
 	"totalNum": 20000,
 	"stockNum": 20000,

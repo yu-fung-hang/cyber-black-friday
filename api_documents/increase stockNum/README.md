@@ -7,7 +7,7 @@ Increase the number of stock. Both `totalNum` and `stockNum` will be increased b
 **HTTP Method** : `PUT`
 
 **Body Example** : 
-```
+```json
 {
     "id": 2,
     "increment": 10000,

@@ -5,7 +5,7 @@
 **HTTP Method** : `POST`
 
 **Body Example** :
-```
+```json
 [{
 	"userId": 1,
 	"productId": 1,
