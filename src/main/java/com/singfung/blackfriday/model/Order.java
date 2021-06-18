@@ -2,7 +2,6 @@ package com.singfung.blackfriday.model;
 
 import lombok.*;
 
-import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
