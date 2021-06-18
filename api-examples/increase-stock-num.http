@@ -1,0 +1,9 @@
+
+PUT http://localhost:8081/blackfriday/stock
+Content-Type: application/json
+
+{
+  "id": 1,
+  "increment": 10000,
+  "name": "bbb"
+}

@@ -1,0 +1,11 @@
+
+POST http://localhost:8081/blackfriday/stock
+Content-Type: application/json
+
+{
+  "totalNum": 20000,
+  "stockNum": 20000,
+  "name": "AAA"
+}
+
+###
