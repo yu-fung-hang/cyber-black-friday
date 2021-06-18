@@ -1,6 +1,6 @@
 # Batch Insert Orders record
 
-**URL** : `http://localhost:8080/blackfriday/order`
+**URL** : `http://localhost:8081/blackfriday/order`
 
 **HTTP Method** : `POST`
 

@@ -1,6 +1,6 @@
 # Find a stock by Id
 
-**URL** : `http://localhost:8080/blackfriday/stock/{id}`
+**URL** : `http://localhost:8081/blackfriday/stock/{id}`
 
 **URL Example** : `http://localhost:8080/blackfriday/stock/1`
 

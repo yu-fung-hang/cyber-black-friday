@@ -1,6 +1,6 @@
 # List all Stocks
 
-**URL** : `http://localhost:8080/blackfriday/stock`
+**URL** : `http://localhost:8081/blackfriday/stock`
 
 **HTTP Method** : `GET`
 
