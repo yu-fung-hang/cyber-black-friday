@@ -23,5 +23,3 @@ create table OrderInfo
     note          varchar(255),
     primary key (id)
 );
-
-insert into stock(totalNum, stockNum, name, version, note) values (20000, 20000, 'AAA', 0, NULL);
