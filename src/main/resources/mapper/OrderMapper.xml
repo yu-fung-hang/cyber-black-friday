@@ -27,4 +27,8 @@
         </foreach>
     </insert>
 
+    <delete id="deleteAll">
+        delete from `orderinfo`
+    </delete>
+
 </mapper>

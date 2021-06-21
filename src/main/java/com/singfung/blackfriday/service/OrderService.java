@@ -10,7 +10,7 @@ public interface OrderService
 
 //	public int generateAnOrderWithOptimLocking(Long stockId, Long userId);
 
-	public Long generateAnOrderInRedis(int stockId, int userId);
-
 	void batchSave(List<Order> orders);
+
+	void deleteAll();
 }

@@ -1,5 +1,6 @@
 package com.singfung.blackfriday.dao;
 
+import com.singfung.blackfriday.common.QueryWrapper;
 import com.singfung.blackfriday.model.Stock;
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +18,8 @@ public interface StockDAO
 	int update(Stock stock);
 
 	int decreaseStockNum(Stock stock);
+
+	int deleteAll();
+
+	List<Stock> selectWithQuery(QueryWrapper wrapper);
 }

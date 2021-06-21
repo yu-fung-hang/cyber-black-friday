@@ -21,7 +21,7 @@
 				for (var i=1; i<=userNum; i++)
 				{
 					var Http = new XMLHttpRequest();
-					var url = 'http://localhost:8081/blackfriday/order/'+ stockId +'/redis-order/'+ i;
+					var url = 'http://localhost:8081/blackfriday/'+ stockId +'/redis-order/'+ i;
 					Http.open("POST", url);
 					Http.send();
 				}
@@ -44,7 +44,7 @@
 				{
 					var settings = 
 					{
-						"url": 'http://localhost:8081/blackfriday/order/'+ stockId +'/redis-order/'+ i,
+						"url": 'http://localhost:8081/blackfriday/'+ stockId +'/redis-order/'+ i,
 						"method": "POST",
 						"timeout": 0,
 					};

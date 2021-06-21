@@ -11,6 +11,55 @@
         <result property="note" column="note" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <sql id="where">
+        <where>
+            <if test="eqWrapper != null">
+                <foreach collection="eqWrapper.entrySet()" index="column" item="value">
+                    <if test="column != null and value != null">
+                        and `${column}` = #{value}
+                    </if>
+                </foreach>
+            </if>
+            <if test="neqWrapper != null">
+                <foreach collection="neqWrapper.entrySet()" index="column" item="value">
+                    <if test="column != null and value != null">
+                        and `${column}` != #{value}
+                    </if>
+                </foreach>
+            </if>
+            <if test="inWrapper != null">
+                <foreach collection="inWrapper.entrySet()" index="column" item="values">
+                    <if test="values != null and values.size() > 0">
+                        and `${column}` in
+                        <foreach collection="values" item="value" open="(" separator="," close=")">
+                            #{value}
+                        </foreach>
+                    </if>
+                </foreach>
+            </if>
+            <if test="ninWrapper != null">
+                <foreach collection="ninWrapper.entrySet()" index="column" item="values">
+                    <if test="values != null and values.size() > 0">
+                        and `${column}` not in
+                        <foreach collection="values" item="value" open="(" separator="," close=")">
+                            #{value}
+                        </foreach>
+                    </if>
+                </foreach>
+            </if>
+            <if test="keyWrapper != null and keyWrapper.size() > 0">
+                <foreach collection="keyWrapper.entrySet()" index="key" item="columns">
+                    <if test="columns != null and columns.size() > 0">
+                        and
+                        <foreach collection="columns" item="column" open="(" separator=" or " close=")">
+                            `${column}` like CONCAT('%',#{key},'%')
+                        </foreach>
+                    </if>
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
     <insert id="insert">
         insert into `stock`
         (`id`, `totalNum`, `stockNum`, `name`, `version`, `note`)
@@ -45,5 +94,23 @@
         </set>
         where id = #{id}
     </update>
+
+    <delete id="deleteAll">
+        delete from `stock`
+    </delete>
+
+    <select id="selectWithQuery" resultMap="baseMap">
+        select * from `stock`
+        <include refid="where"/>
+        <if test="sortWrapper != null and sortWrapper.size() > 0">
+            order by
+            <foreach collection="sortWrapper.entrySet()" index="s" item="o" separator=",">
+                `${s}` ${o}
+            </foreach>
+        </if>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
 
 </mapper>
