@@ -19,7 +19,8 @@ create table OrderInfo
     userId        int not null,
     productId     int not null,
     itemsNum      int not null,
-    orderTime     timestamp not null,
+    orderedTime   timestamp not null,
+    dbCreatedTime timestamp not null,
     note          varchar(255),
     primary key (id)
 );

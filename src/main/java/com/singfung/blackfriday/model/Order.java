@@ -18,6 +18,7 @@ public class Order implements Serializable
 	private int userId;
 	private int productId;
 	private int itemsNum;
-	private Timestamp orderTime;
+	private Timestamp orderedTime;
+	private Timestamp dbCreatedTime;
 	private String note;
 }
