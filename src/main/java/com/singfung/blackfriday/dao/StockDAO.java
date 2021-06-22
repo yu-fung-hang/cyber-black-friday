@@ -15,8 +15,6 @@ public interface StockDAO
 
 	int insert(Stock stock);
 
-	int update(Stock stock);
-
 	int decreaseStockNum(Stock stock);
 
 	int deleteAll();

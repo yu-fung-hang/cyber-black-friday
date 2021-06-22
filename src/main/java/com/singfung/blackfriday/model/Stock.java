@@ -24,8 +24,6 @@ public class Stock implements Serializable
 	private String name;
 	private int version;
 	private String note;
-	@Min(value = 1, message = "invalid increment", groups = {Update.class})
-	private int increment;
 
 	public interface Update {}
 

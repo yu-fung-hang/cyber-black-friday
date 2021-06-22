@@ -16,8 +16,6 @@ public interface StockService
 
 	void save(Stock stock);
 
-//	void update(Stock stock);
-
 	void deleteAll();
 
 	void syncRedis();

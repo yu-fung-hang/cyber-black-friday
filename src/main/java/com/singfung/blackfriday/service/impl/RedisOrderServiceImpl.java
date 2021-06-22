@@ -111,7 +111,6 @@ public class RedisOrderServiceImpl implements RedisOrderService
 				order.setUserId(userId);
 				order.setItemsNum(1);
 				order.setOrderedTime(new Timestamp(time));
-//				order.setDbCreatedTime(new Timestamp(System.currentTimeMillis()));
 				orderList.add(order);
 			}
 

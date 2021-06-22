@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 /**
  * Redis Configuration
  *
- * @author PeterYuen17
+ * @author sing-fung
  */
 @Configuration
 public class RedisConfiguration

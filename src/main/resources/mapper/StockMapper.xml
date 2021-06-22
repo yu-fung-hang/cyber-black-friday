@@ -71,18 +71,6 @@
         select * from stock where id = #{id}
     </select>
 
-    <update id="update" parameterType="com.singfung.blackfriday.model.Stock">
-        update stock
-        <set>
-            <if test="name != null">
-                `name` = #{name},
-            </if>
-            totalNum = #{totalNum},
-            stockNum = #{stockNum}
-        </set>
-        where id = #{id}
-    </update>
-
     <select id="selectAll" resultMap="baseMap">
         select * from stock
     </select>

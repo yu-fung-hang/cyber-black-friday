@@ -8,8 +8,6 @@ import java.util.List;
 @Repository
 public interface OrderDAO
 {
-//	public int generateAnOrder(Order order);
-
 	int batchInsert(List<Order> orders);
 
 	int deleteAll();

@@ -1,7 +1,6 @@
 package com.singfung.blackfriday.controller;
 
 import com.singfung.blackfriday.common.Result;
-import com.singfung.blackfriday.service.OrderService;
 import com.singfung.blackfriday.service.RedisOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,11 +29,4 @@ public class RedisOrderController
 
 		return ResponseEntity.status(HttpStatus.GONE).body(Result.failure());
 	}
-
-//	@PostMapping(value = "/redis-db")
-//	@ResponseBody
-//	public void saveOrdersFromRedisToDB(int stockId)
-//	{
-//		redisOrderService.saveOrdersFromRedisToDB(stockId);
-//	}
 }
