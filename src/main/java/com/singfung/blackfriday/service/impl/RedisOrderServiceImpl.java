@@ -2,8 +2,6 @@ package com.singfung.blackfriday.service.impl;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import com.singfung.blackfriday.model.Order;
@@ -72,7 +70,7 @@ public class RedisOrderServiceImpl implements RedisOrderService
 	@Transactional(rollbackFor = Exception.class)
 	public void saveOrdersFromRedisToDB(int stockId)
 	{
-		System.err.println("Start saving the orders into DB...");
+		System.err.println("Start saving orders from Redis into DB...");
 		Long start = System.currentTimeMillis();
 
 		BoundListOperations ops = redisTemplate.boundListOps(PREFIX + stockId);
@@ -111,10 +109,11 @@ public class RedisOrderServiceImpl implements RedisOrderService
 				order.setUserId(userId);
 				order.setItemsNum(1);
 				order.setOrderedTime(new Timestamp(time));
+				order.setDbCreatedTime(new Timestamp(System.currentTimeMillis()));
 				orderList.add(order);
 			}
 
-			count += executeBatch(orderList);
+			count += executeBatch(orderList, stockId);
 		}
 
 		redisTemplate.delete(PREFIX + stockId);
@@ -123,32 +122,10 @@ public class RedisOrderServiceImpl implements RedisOrderService
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public int executeBatch(List<Order> orderList)
+	public int executeBatch(List<Order> orderList, int stockId)
 	{
-		HashMap<Integer, LinkedList<Order>> map = new HashMap<>();
-
-		//Divide the orders based on stockId
-		for(Order order : orderList)
-		{
-			int productId = order.getProductId();
-
-			if(map.get(productId) == null)
-			{
-				LinkedList<Order> linkedList = new LinkedList<>();
-				linkedList.add(order);
-				map.put(productId, linkedList);
-			} else {
-				map.get(productId).add(order);
-			}
-		}
-
-		for(int stockId : map.keySet())
-		{
-			LinkedList<Order> currList = map.get(stockId);
-			int decrement = currList.size();
-			stockService.decreaseStockNum(stockId, decrement);
-			orderService.batchSave(currList);
-		}
+		stockService.decreaseStockNum(stockId, orderList.size());
+		orderService.batchSave(orderList);
 
 		return orderList.size();
 	}
