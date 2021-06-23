@@ -4,7 +4,7 @@ use blackfriday;
 
 create table stock
 (
-    id            int not null auto_increment,
+    id            int not null,
     totalNum      int not null,
     stockNum      int not null,
     name          varchar(100) not null,
