@@ -24,7 +24,7 @@
         (id, userId, productId, itemsNum, orderedTime, dbCreatedTime, note)
         values
         <foreach collection="list" item="item" separator=",">
-            (#{item.id}, #{item.userId}, #{item.productId}, #{item.itemsNum}, #{item.orderedTime}, CURRENT_TIMESTAMP(), #{item.note})
+            (#{item.id}, #{item.userId}, #{item.productId}, #{item.itemsNum}, #{item.orderedTime}, #{item.dbCreatedTime}, #{item.note})
         </foreach>
     </insert>
 
