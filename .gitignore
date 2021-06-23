@@ -33,7 +33,4 @@ build/
 
 ### VS Code ###
 .vscode/
-src/main/resources/static/best-black-friday-deals-for-families-768x460.jpg
-src/main/resources/static/black-friday-thought-bubble.jpg
-src/main/resources/static/blackfriday2.html
 src/main/resources/templates/
