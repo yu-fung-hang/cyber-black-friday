@@ -78,6 +78,10 @@
 				var url = 'http://localhost:8081/blackfriday';
 				Http.open("DELETE", url);
 				Http.send();
+				document.getElementById("info").innerHTML = '';
+				document.getElementById("complete").innerHTML = '';
+				document.getElementById("stockId").value = '';
+				document.getElementById("userNum").value = '';
 			}
 		</script>
 
@@ -107,6 +111,7 @@
 				background-color: white;
 				color: black;
                 padding-top: 25px;
+				font-size: 18px;
             }
             #button-group
             {
