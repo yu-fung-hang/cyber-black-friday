@@ -6,7 +6,7 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
         </script>
 		<script>
-			function buy()
+			function redis()
 			{
 				if(validate("stockId") == false) {return;}
 				if(validate("userNum") == false) {return;}
@@ -28,7 +28,7 @@
 				document.getElementById("complete").innerHTML = 'Complete!    -    ' + Date();
 			}
 			
-			function buy2()
+			function plock()
 			{
 				if(validate("stockId") == false) {return;}
 				if(validate("userNum") == false) {return;}
@@ -44,7 +44,7 @@
 				{
 					var settings = 
 					{
-						"url": 'http://localhost:8081/blackfriday/'+ stockId +'/redis-order/'+ i,
+						"url": 'http://localhost:8081/blackfriday/'+ stockId +'/plock-order/'+ i,
 						"method": "POST",
 						"timeout": 0,
 					};
@@ -198,8 +198,8 @@
         </table>
     </div>
     <div id="button-group">
-        <button type="button"><b>Order</b></button>
-		<button type="button" onclick="buy()"><b>Order With Redis</b></button>
+        <button type="button" onclick="plock()"><b>Order</b></button>
+		<button type="button" onclick="redis()"><b>Order With Redis</b></button>
 		<button type="button" onclick="reset()"><b>Reset</b></button>
     </div>
 	<div id="message">
