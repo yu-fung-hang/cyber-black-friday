@@ -11,11 +11,15 @@ public interface StockDAO
 {
 	Stock select(int id);
 
+	Stock selectForUpdate(int id);
+
 	List<Stock> selectAll();
 
 	int insert(Stock stock);
 
 	int decreaseStockNum(Stock stock);
+
+	int decreaseStockNumByOne(Stock stock);
 
 	int deleteAll();
 

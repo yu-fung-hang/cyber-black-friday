@@ -8,9 +8,13 @@ public interface StockService
 {	
 	Stock findById(int id);
 
+	Stock selectForUpdate(int id);
+
 	Stock findByStockname(String stockname);
 
-	void decreaseStockNum(int id, int decrement);
+	int decreaseStockNum(int id, int decrement);
+
+	int decreaseStockNumByOne(Stock stock);
 
 	List<Stock> findAll();
 

@@ -71,6 +71,10 @@
         select * from stock where id = #{id}
     </select>
 
+    <select id="selectForUpdate" resultMap="baseMap">
+        select * from stock where id = #{id} for update;
+    </select>
+
     <select id="selectAll" resultMap="baseMap">
         select * from stock
     </select>
@@ -80,7 +84,15 @@
         <set>
             stockNum = #{stockNum}
         </set>
-        where id = #{id}
+        where id = #{id};
+    </update>
+
+    <update id="decreaseStockNumByOne" parameterType="com.singfung.blackfriday.model.Stock">
+        update stock
+        <set>
+            stockNum = stockNum - 1
+        </set>
+        where id = #{id};
     </update>
 
     <delete id="deleteAll">

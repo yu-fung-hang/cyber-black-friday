@@ -13,7 +13,7 @@
     </resultMap>
 
     <insert id="insert">
-        insert into orderinfo
+        insert into `orderinfo`
         (id, userId, productId, itemsNum, orderedTime, dbCreatedTime, note)
         values
         (#{id}, #{userId}, #{productId}, #{itemsNum}, #{orderedTime}, #{dbCreatedTime}, #{note})

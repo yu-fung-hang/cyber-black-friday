@@ -24,3 +24,5 @@ create table OrderInfo
     note          varchar(255),
     primary key (id)
 );
+
+SET AUTOCOMMIT=0;

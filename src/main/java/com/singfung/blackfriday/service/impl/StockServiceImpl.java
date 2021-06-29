@@ -29,7 +29,8 @@ public class StockServiceImpl implements StockService
     public Stock findByStockname(String stockname)
     {
         Stock stock = null;
-        if (!StringUtils.isEmpty(stockname)) {
+        if (!StringUtils.isEmpty(stockname))
+        {
             QueryWrapperBuilder builder = new QueryWrapperBuilder();
             builder.eq("name", stockname);
             List<Stock> stocks = stockDAO.selectWithQuery(builder.build());
@@ -47,7 +48,7 @@ public class StockServiceImpl implements StockService
         if (stock.getStockNum() != stock.getTotalNum())
         { throw new BusinessException("totalNum should be equal to stockNum."); }
 
-        uniqueStcokname(stock.getName());
+        uniqueStockname(stock.getName());
         stockDAO.insert(stock);
         syncRedis();
     }
@@ -68,7 +69,7 @@ public class StockServiceImpl implements StockService
         }
     }
 
-    public void uniqueStcokname(String stockname)
+    public void uniqueStockname(String stockname)
     {
         Stock s = findByStockname(stockname);
         if (s != null) {
@@ -87,6 +88,16 @@ public class StockServiceImpl implements StockService
     }
 
     @Override
+    public Stock selectForUpdate(int id)
+    {
+        Stock result = stockDAO.selectForUpdate(id);
+        if(result == null)
+        { throw new BusinessException("Stock not found!"); }
+
+        return result;
+    }
+
+    @Override
     public List<Stock> findAll()
     {
         return stockDAO.selectAll();
@@ -94,11 +105,18 @@ public class StockServiceImpl implements StockService
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void decreaseStockNum(int id, int decrement)
+    public int decreaseStockNum(int id, int decrement)
     {
         Stock stock = findById(id);
         stock.setStockNum(stock.getStockNum() - decrement);
-        stockDAO.decreaseStockNum(stock);
+        return stockDAO.decreaseStockNum(stock);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int decreaseStockNumByOne(Stock stock)
+    {
+        return stockDAO.decreaseStockNumByOne(stock);
     }
 
     @Override

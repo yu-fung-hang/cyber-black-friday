@@ -11,4 +11,6 @@ public interface OrderDAO
 	int batchInsert(List<Order> orders);
 
 	int deleteAll();
+
+	int insert(Order order);
 }
