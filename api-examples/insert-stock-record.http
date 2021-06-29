@@ -4,8 +4,7 @@ Content-Type: application/json
 
 {
   "id": 1,
-  "totalNum": 100,
-  "stockNum": 100,
+  "totalNum": 20000,
   "name": "AAA"
 }
 

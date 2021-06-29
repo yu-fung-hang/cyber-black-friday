@@ -45,9 +45,6 @@ public class StockServiceImpl implements StockService
     @Transactional(rollbackFor = Exception.class)
     public void save(Stock stock)
 	{
-        if (stock.getStockNum() != stock.getTotalNum())
-        { throw new BusinessException("totalNum should be equal to stockNum."); }
-
         uniqueStockname(stock.getName());
         stockDAO.insert(stock);
         syncRedis();

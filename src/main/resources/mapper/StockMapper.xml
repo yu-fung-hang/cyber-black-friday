@@ -64,7 +64,7 @@
         insert into `stock`
         (`id`, `totalNum`, `stockNum`, `name`, `version`, `note`)
         values
-        (#{id}, #{totalNum}, #{stockNum}, #{name}, #{version}, #{note})
+        (#{id}, #{totalNum}, #{totalNum}, #{name}, #{version}, #{note})
     </insert>
 
     <select id="select" resultMap="baseMap">

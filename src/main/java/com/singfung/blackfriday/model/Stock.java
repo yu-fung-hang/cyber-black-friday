@@ -18,7 +18,6 @@ public class Stock implements Serializable
 	private int id;
 	@Min(value = 1, message = "invalid totalNum", groups = {Insert.class})
 	private int totalNum;
-	@Min(value = 1, message = "invalid stockNum", groups = {Insert.class})
 	private int stockNum;
 	@NotBlank(message = "name should not be blank", groups = {Insert.class})
 	private String name;
