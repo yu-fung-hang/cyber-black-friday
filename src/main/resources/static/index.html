@@ -40,17 +40,15 @@
 				var userNum = document.getElementById("userNum").value;
 			
 				document.getElementById("info").innerHTML = 'Start sending requests...    -    ' + Date();
+
 				for (var i=1; i<=userNum; i++)
 				{
-					var settings = 
-					{
-						"url": 'http://localhost:8080/blackfriday/'+ stockId +'/plock-order/'+ i,
-						"method": "POST",
-						"timeout": 0,
-					};
-
-					$.ajax(settings).done(function (response) {});
+					var Http = new XMLHttpRequest();
+					var url = 'http://localhost:8080/blackfriday/'+ stockId +'/plock-order/'+ i;
+					Http.open("POST", url);
+					Http.send();
 				}
+
 				document.getElementById("complete").innerHTML = 'Finished!    -    ' + Date();
 			}
 			
