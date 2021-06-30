@@ -48,7 +48,7 @@ This project emulates the scene that a number of people are ordering the same pr
     * Time of transferring 20000 orders from Redis to MySQL: around 3s
     ![](images/redis-2.png)
     ![](images/redis-3.png)
-    * Generated exactly 20000 orders
+    * Generated exactly 20000 orders, costing around 30s in total
 
 #### Pessimistic Locking
 1. stockNum = 1000, number of users = 2000:
@@ -57,4 +57,4 @@ This project emulates the scene that a number of people are ordering the same pr
     * Time of saving 1000 orders one by one into MySQL: around 165s
     ![](images/plock-2.png)
     ![](images/plock-3.png)
-    * Generated exactly 1000 orders
+    * Generated exactly 1000 orders, costing around 166s in total
