@@ -4,12 +4,10 @@ I would test how efficient it would become when an online shopping system is int
 
 ![](images/1.png)
 
-## Prerequisites
+## Tools and frameworks
 * Redis
 * MySQL
 * Maven
-
-## Other frameworks
 * Spring Boot
 * Spring
 * Spring MVC
@@ -34,26 +32,18 @@ This project emulates the scene that a number of people are ordering the same pr
     * `Order`: implemented using pessimistic locking. IntelliJ Console will show `Orders are full!` when the stock is empty.
     * `Order with Redis`: implemented using Redis. All orders would be saved into Redis at first. When the stock in empty, orders would be transferred from Redis into MySQL. IntelliJ Console will show a message when the whole process is complete.
 4. Check the database to see how much time was spent in the emulation.
-5. Click `Reset` to clear all records in MySQL and Redis. Start another emulation by doing Step 1 again.
+5. Click `Reset` to clear all records in MySQL and Redis. Start another emulation by following all these steps again.
 
 ## Experiments
-### Environment
-### Result
-#### Redis
-1. stockNum = 20000, number of users = 21000:
-    * Time of sending 21000 requests: around 6s
-    
-    * Time of saving 20000 orders into Redis: around 26s
-    * Time of transferring 20000 orders from Redis to MySQL: around 3s
-    
-    
-    * Generated exactly 20000 orders, costing around 30s in total
+### Experiment environment
+* Ubuntu 18.04.4
+* Redis 6.2.4
+* MySQL 8.0.25
+* Firefox
 
-#### Pessimistic Locking
-1. stockNum = 1000, number of users = 2000:
-    * Time of sending 1000 requests: around 1s
-    
-    * Time of saving 1000 orders one by one into MySQL: around 165s
-    
-    
-    * Generated exactly 1000 orders, costing around 166s in total
+### Test cases
+#### Case 1: No method is applied to prevent error
+
+#### Case 2: Pessimistic locking
+
+#### Case 3: Redis
