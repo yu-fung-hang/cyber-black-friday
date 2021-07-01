@@ -5,10 +5,9 @@ I would test how efficient it would become when an online shopping system is int
 ![](images/1.png)
 
 ## Prerequisites
-* Redis 3.2.100 or higher versions
-* MySQL 8.0.15 or higher versions
-* Maven 3.6.0 or higher versions
-* Java 1.8
+* Redis
+* MySQL
+* Maven
 
 ## Other frameworks
 * Spring Boot
@@ -43,18 +42,18 @@ This project emulates the scene that a number of people are ordering the same pr
 #### Redis
 1. stockNum = 20000, number of users = 21000:
     * Time of sending 21000 requests: around 6s
-    ![](images/redis-1.png)
+    
     * Time of saving 20000 orders into Redis: around 26s
     * Time of transferring 20000 orders from Redis to MySQL: around 3s
-    ![](images/redis-2.png)
-    ![](images/redis-3.png)
+    
+    
     * Generated exactly 20000 orders, costing around 30s in total
 
 #### Pessimistic Locking
 1. stockNum = 1000, number of users = 2000:
     * Time of sending 1000 requests: around 1s
-    ![](images/plock-1.png)
+    
     * Time of saving 1000 orders one by one into MySQL: around 165s
-    ![](images/plock-2.png)
-    ![](images/plock-3.png)
+    
+    
     * Generated exactly 1000 orders, costing around 166s in total
