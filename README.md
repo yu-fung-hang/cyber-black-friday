@@ -1,6 +1,5 @@
 # Cyber Black Friday
-Imagine that thousands of people would buy the same product at the same time during Cyber Black Friday, how Redis would help relieve the traffic jam of orders? In this project, 
-I would test how efficient it would become when an online shopping system is integrated with Redis.
+Imagine that thousands of people is going to buy the same product at the same time during Cyber Black Friday, how Redis could help relieve the traffic jam of orders? In this project, I would test how efficient it would become when an online shopping system is integrated with Redis.
 
 ![](images/interface.png)
 
@@ -45,14 +44,14 @@ This project emulates the scene that a number of people are ordering the same pr
 #### Case 1: No method is applied to prevent error
 
 * parameters: stockNum = 100, number of users = 200
-![](images/error.png)
+
+    ![](images/error.png)
 
 * Though there were only 100 products in stock, 108 orders were generated.
 
 #### Case 2: Pessimistic locking
 
 * parameters: stockNum = 2,000, number of users = 3,000
-* results:
 ![](images/plock-1.png)
 ![](images/plock-2.png)
 ![](images/plock-3.png)
@@ -62,19 +61,18 @@ This project emulates the scene that a number of people are ordering the same pr
 #### Case 3: Redis
 
 * parameters: stockNum = 20,000, number of users = 21,000
-* results:
 ![](images/redis-1.png)
 ![](images/redis-2.png)
 ![](images/redis-3.png)
 
-| Time of                                 | Time           |
-| :---                                    |     :---:      |
-| sending requests from browser           | ≈ 2s           |
-| generating orders in Redis              | ≈ 14s          |
-| transferring orders from Redis to DB    | ≈ 1s           |
-| the whole process                       | ≈ 16s          |
-
 * It generated exactly 20,000 orders, and it took only around 16s to finish the whole process.
+
+    | Time of                                 | Time           |
+    | :---                                    |     :---:      |
+    | sending requests from browser           | ≈ 2s           |
+    | generating orders in Redis              | ≈ 14s          |
+    | transferring orders from Redis to DB    | ≈ 1s           |
+    | the whole process                       | ≈ 16s          |
 
 ## Conclusion
 Not only does Redis prevent the system from generating more orders, but it also helps decrease runtime significantly.
