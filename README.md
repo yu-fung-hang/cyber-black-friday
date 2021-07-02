@@ -35,8 +35,10 @@ Here are a few steps to create the scene that lots of people are ordering the sa
     * Copy the content from `\api-examples\insert-stock-record.http` to Postman and run it.
 2. Enter `stockId` (1 as default) and `Number of Users` on the browser;
 3. Click one of the two buttons to start an emulation:
-    * __Order__: implemented using pessimistic locking. The corresponding row in `stock` table would be locked when stockNum decreases. IntelliJ Console will show `Orders are full!` when the stock is empty.
-    * __Order with Redis__: implemented using Redis. All orders would be saved into Redis at first before being transferred into MySQL when the stock is empty. IntelliJ Console will show a message when the whole process is complete.
+    * __Order__: implemented using pessimistic locking. The corresponding row in `stock` table would be locked when stockNum decreases. 
+        > IntelliJ Console will show `Orders are full!` when the stock is empty.
+    * __Order with Redis__: implemented using Redis. All orders would be saved into Redis at first before being transferred into MySQL when the stock is empty. The reason why the combination of Redis and Lua could prevent the system from generating more orders is explained [*here*](https://redis.io/commands/eval#atomicity-of-scripts).
+        >IntelliJ Console will show a message when the whole process is complete.
 4. Check the database to see how much time was spent on the emulation.
 5. Click `Reset` to clear all records in MySQL and Redis. Start another emulation by redoing all these steps again.
 
