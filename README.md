@@ -1,7 +1,7 @@
 # Cyber Black Friday
 Imagine that thousands of people are going to buy the same product at the same time on Cyber Black Friday, how should the shopping system be designed so that it won't crash or perform poorly when it is bombarded with orders?
 
-In this project, I tested how efficient it would become when an online shopping system is integrated with Redis.
+In this project, I tested how efficient it could become when an online shopping system is integrated with Redis.
 
 ![](images/interface.png)
 
@@ -9,6 +9,7 @@ In this project, I tested how efficient it would become when an online shopping 
 * Redis
 * MySQL
 * Maven
+* Java
 
 ## Other frameworks
 * Lua
@@ -19,16 +20,16 @@ In this project, I tested how efficient it would become when an online shopping 
 
 ## How to run this project
 1. Clone this project in `IntelliJ IDEA`;
-2. Modify `/src/main/resources/application-dev.properties`:
+2. Modify `\src\main\resources\application-dev.properties`:
     1. Modify `spring.datasource.username` and `spring.datasource.password` to your own MySQL username and password; 
     2. Modify `spring.datasource.url` and `blackfriday.database.url` to your current time zone;
 3. Start your local Redis server;
-4. Run `/src/main/java/com/singfung/blackfriday/CyberBlackFridayApplication`(click the triangle near the line numbers). After that, database `blackfriday` should have been created in your local MySQL;
+4. Run `\src\main\java\com\singfung\blackfriday\CyberBlackFridayApplication`(click the triangle near the line numbers). After that, database `blackfriday` should have been created in your local MySQL;
 5. Open `http://localhost:8080/` in Firefox. 
 
     > P.S. Chrome is not recommended in this project. When the number of users is too large, it will show the following error: `Failed to load resource: net::ERR_INSUFFICIENT_RESOURCES`.
 
-## Emulate the traffic jam of orders
+## Emulate an explosion of orders
 Here are a few steps to create the scene that lots of people are ordering the same product at the same time:
 1. Add a product into stock. Before that you need to decide how many products there would be in stock, and then do one of the following to add it to DB and Redis:
     * Run `\api-examples\insert-stock-record.http` if you are using IntelliJ IDEA Ultimate;
@@ -36,8 +37,10 @@ Here are a few steps to create the scene that lots of people are ordering the sa
 2. Enter `stockId` (1 as default) and `Number of Users` on the browser;
 3. Click one of the two buttons to start an emulation:
     * __Order__: implemented using pessimistic locking. The corresponding row in `stock` table would be locked when stockNum decreases. 
+        
         > IntelliJ Console will show `Orders are full!` when the stock is empty.
-    * __Order with Redis__: implemented using Redis. All orders would be saved into Redis at first before being transferred into MySQL when the stock is empty. The reason why the combination of Redis and Lua could prevent the system from generating more orders is explained [*here*](https://redis.io/commands/eval#atomicity-of-scripts).
+    * __Order with Redis__: implemented using Redis. All orders would be saved into Redis before being transferred into MySQL when the stock is empty. The reason why the combination of Redis and Lua could prevent the system from generating more orders is explained [*here*](https://redis.io/commands/eval#atomicity-of-scripts).
+        
         >IntelliJ Console will show a message when the whole process is complete.
 4. Check the database to see how much time was spent on the emulation.
 5. Click `Reset` to clear all records in MySQL and Redis. Start another emulation by redoing all these steps again.
