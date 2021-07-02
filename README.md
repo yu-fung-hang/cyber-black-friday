@@ -26,7 +26,7 @@ In this project, I tested how efficient it would become when an online shopping 
 4. Run `/src/main/java/com/singfung/blackfriday/CyberBlackFridayApplication`(click the triangle near the line numbers). After that, database `blackfriday` should have been created in your local MySQL;
 5. Open `http://localhost:8080/` in Firefox. 
 
-> P.S. Chrome is not recommended in this project. When the number of users is too large, it will show the following error: `Failed to load resource: net::ERR_INSUFFICIENT_RESOURCES`.
+    > P.S. Chrome is not recommended in this project. When the number of users is too large, it will show the following error: `Failed to load resource: net::ERR_INSUFFICIENT_RESOURCES`.
 
 ## Emulate the traffic jam of orders
 Here are a few steps to create the scene that lots of people are ordering the same product at the same time:
