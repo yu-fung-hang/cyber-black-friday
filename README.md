@@ -28,13 +28,13 @@ In this project, I would test how efficient it would become when an online shopp
 
 ## Emulate the traffic jam of orders
 Here are a few steps to create the scene that lots of people are ordering the same product at the same time:
-1. Add a product into stock. Before that you need to decide how many products there are in stock, and then do one of the following to add it to DB and Redis:
+1. Add a product into stock. Before that you need to decide how many products there would be in stock, and then do one of the following to add it to DB and Redis:
     * Run `\api-examples\insert-stock-record.http` if you are using IntelliJ IDEA Ultimate;
     * Copy the content from `\api-examples\insert-stock-record.http` to Postman and run it.
 2. Enter `stockId` (1 as default) and `Number of Users` on the browser;
 3. Click one of the two buttons to start an emulation:
     * `Order`: implemented using pessimistic locking. IntelliJ Console will show `Orders are full!` when the stock is empty.
-    * `Order with Redis`: implemented using Redis. All orders would be saved into Redis at first. When the stock in empty, orders would be transferred from Redis into MySQL. IntelliJ Console will show a message when the whole process is complete.
+    * `Order with Redis`: implemented using Redis. All orders would be saved into Redis at first before being transferred into MySQL when the stock is empty. IntelliJ Console will show a message when the whole process is complete.
 4. Check the database to see how much time was spent on the emulation.
 5. Click `Reset` to clear all records in MySQL and Redis. Start another emulation by redoing all these steps again.
 
