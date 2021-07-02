@@ -41,18 +41,18 @@ This project emulates the scene that a number of people are ordering the same pr
 * Firefox
 
 ### Test cases
-#### Case 1: No method is applied to prevent error
+### Case 1: No method is applied to prevent error
 
-* Parameters: stockNum = 100, number of users = 200
+* Parameters: stockNum = 100, number of users = 200;
 * Result:
 
     ![](images/error.png)
 
 * Conclusion: Although there were only 100 products in stock, 108 orders were generated, which is definitely not accepted.
 
-#### Case 2: Pessimistic locking
+### Case 2: Pessimistic locking
 
-* Parameters: stockNum = 2,000, number of users = 3,000
+* Parameters: stockNum = 2,000, number of users = 3,000;
 * Results:
 
     ![](images/plock-1.png)
@@ -61,9 +61,9 @@ This project emulates the scene that a number of people are ordering the same pr
 
 * Conclusion: It generated exactly 2,000 orders, however, it took more than 5 minutes to finish the whole process.
 
-#### Case 3: Redis
+### Case 3: Redis
 
-* Parameters: stockNum = 20,000, number of users = 21,000
+* Parameters: stockNum = 20,000, number of users = 21,000;
 * Results:
 ![](images/redis-1.png)
 ![](images/redis-2.png)
