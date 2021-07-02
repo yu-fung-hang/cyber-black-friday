@@ -27,7 +27,7 @@ This project emulates the scene that a number of people are ordering the same pr
     * Run `\api-examples\insert-stock-record.http` if you are using IntelliJ IDEA Ultimate;
     * Copy the content from `\api-examples\insert-stock-record.http` to Postman and run it.
 2. Enter `stockId` (1 as default) and `Number of Users`;
-3. Click one of the two buttons to start a emulation:
+3. Click one of the two buttons to start an emulation:
     * `Order`: implemented using pessimistic locking. IntelliJ Console will show `Orders are full!` when the stock is empty.
     * `Order with Redis`: implemented using Redis. All orders would be saved into Redis at first. When the stock in empty, orders would be transferred from Redis into MySQL. IntelliJ Console will show a message when the whole process is complete.
 4. Check the database to see how much time was spent in the emulation.
@@ -43,33 +43,33 @@ This project emulates the scene that a number of people are ordering the same pr
 ### Test cases
 #### Case 1: No method is applied to prevent error
 
-* parameters: stockNum = 100, number of users = 200
-* result:
+* Parameters: stockNum = 100, number of users = 200
+* Result:
 
     ![](images/error.png)
 
-> Conclusion: Although there were only 100 products in stock, 108 orders were generated, which is definitely not accepted.
+* Conclusion: Although there were only 100 products in stock, 108 orders were generated, which is definitely not accepted.
 
 #### Case 2: Pessimistic locking
 
-* parameters: stockNum = 2,000, number of users = 3,000
-* results:
-![](images/plock-1.png)
-![](images/plock-2.png)
-![](images/plock-3.png)
+* Parameters: stockNum = 2,000, number of users = 3,000
+* Results:
 
-> Conclusion: It generated exactly 2,000 orders, however, it took more than 5 minutes to finish the whole process.
+    ![](images/plock-1.png)
+    ![](images/plock-2.png)
+    ![](images/plock-3.png)
+
+* Conclusion: It generated exactly 2,000 orders, however, it took more than 5 minutes to finish the whole process.
 
 #### Case 3: Redis
 
-* parameters: stockNum = 20,000, number of users = 21,000
-* results:
+* Parameters: stockNum = 20,000, number of users = 21,000
+* Results:
 ![](images/redis-1.png)
 ![](images/redis-2.png)
 ![](images/redis-3.png)
 
-> Conclusion: It generated exactly 20,000 orders, and it took only around 16s to finish the whole process.
-
+* Conclusion: It generated exactly 20,000 orders, and it took only around 16s to finish the whole process.
 
    | Time of                                 | Time           |
    | :---                                    |     :---:      |
