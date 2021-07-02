@@ -1,10 +1,11 @@
 # Cyber Black Friday
-Imagine that thousands of people are going to buy the same product at the same time during Cyber Black Friday, how Redis could help relieve the traffic jam of orders? In this project, I would test how efficient it would become when an online shopping system is integrated with Redis.
+Imagine that thousands of people are going to buy the same product at the same time on Cyber Black Friday, how Redis could help relieve the traffic jam of orders? In this project, I would test how efficient it would become when an online shopping system is integrated with Redis.
 
 ![](images/interface.png)
 
 ## Tools and frameworks
 * Redis
+* Lua
 * MySQL
 * Maven
 * Spring Boot
@@ -19,7 +20,9 @@ Imagine that thousands of people are going to buy the same product at the same t
     2. Modify `spring.datasource.url` and `blackfriday.database.url` to your current time zone;
 3. Start your local Redis server;
 4. Run `/src/main/java/com/singfung/blackfriday/CyberBlackFridayApplication`(click the triangle near the line numbers). After that, database `blackfriday` should have been created in your local MySQL;
-5. Open `http://localhost:8080/` in Firefox. (p.s. If the Number of Users is too large, Chrome will show `Failed to load resource: net::ERR_INSUFFICIENT_RESOURCES`. So Chrome is not recommended in this project)
+5. Open `http://localhost:8080/` in Firefox. 
+
+> P.S. Chrome is not recommended in this project. When the number of users is too large, it will show the following error: `Failed to load resource: net::ERR_INSUFFICIENT_RESOURCES`.
 
 ## Description
 This project emulates the scene that a number of people are ordering the same product at the same time. Here are a few steps to follow:
