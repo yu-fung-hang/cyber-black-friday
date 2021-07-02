@@ -38,7 +38,7 @@ Here are a few steps to create the scene that lots of people are ordering the sa
 4. Check the database to see how much time was spent on the emulation.
 5. Click `Reset` to clear all records in MySQL and Redis. Start another emulation by redoing all these steps again.
 
-## Experimental Environment 
+## Experimental environment 
 * Ubuntu 18.04.4
 * Redis 6.2.4
 * MySQL 8.0.25
