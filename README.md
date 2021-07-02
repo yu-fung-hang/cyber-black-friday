@@ -44,35 +44,39 @@ This project emulates the scene that a number of people are ordering the same pr
 #### Case 1: No method is applied to prevent error
 
 * parameters: stockNum = 100, number of users = 200
+* result:
 
     ![](images/error.png)
 
-* Though there were only 100 products in stock, 108 orders were generated.
+> Conclusion: Although there were only 100 products in stock, 108 orders were generated, which is definitely not accepted.
 
 #### Case 2: Pessimistic locking
 
 * parameters: stockNum = 2,000, number of users = 3,000
+* results:
 ![](images/plock-1.png)
 ![](images/plock-2.png)
 ![](images/plock-3.png)
 
-* It generated exactly 2,000 orders, however, it took more than 5 minutes to finish the whole process.
+> Conclusion: It generated exactly 2,000 orders, however, it took more than 5 minutes to finish the whole process.
 
 #### Case 3: Redis
 
 * parameters: stockNum = 20,000, number of users = 21,000
+* results:
 ![](images/redis-1.png)
 ![](images/redis-2.png)
 ![](images/redis-3.png)
 
-* It generated exactly 20,000 orders, and it took only around 16s to finish the whole process.
+> Conclusion: It generated exactly 20,000 orders, and it took only around 16s to finish the whole process.
 
-    | Time of                                 | Time           |
-    | :---                                    |     :---:      |
-    | sending requests from browser           | ≈ 2s           |
-    | generating orders in Redis              | ≈ 14s          |
-    | transferring orders from Redis to DB    | ≈ 1s           |
-    | the whole process                       | ≈ 16s          |
+
+   | Time of                                 | Time           |
+   | :---                                    |     :---:      |
+   | sending requests from browser           | ≈ 2s           |
+   | generating orders in Redis              | ≈ 14s          |
+   | transferring orders from Redis to DB    | ≈ 1s           |
+   | the whole process                       | ≈ 16s          |
 
 ## Conclusion
 Not only does Redis prevent the system from generating more orders, but it also helps decrease runtime significantly.
