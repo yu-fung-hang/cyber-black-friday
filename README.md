@@ -1,5 +1,5 @@
 # Cyber Black Friday
-Imagine that thousands of people is going to buy the same product at the same time during Cyber Black Friday, how Redis could help relieve the traffic jam of orders? In this project, I would test how efficient it would become when an online shopping system is integrated with Redis.
+Imagine that thousands of people are going to buy the same product at the same time during Cyber Black Friday, how Redis could help relieve the traffic jam of orders? In this project, I would test how efficient it would become when an online shopping system is integrated with Redis.
 
 ![](images/interface.png)
 
