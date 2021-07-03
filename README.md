@@ -51,6 +51,8 @@ Here are a few steps to create the scene that lots of people are ordering the sa
 * MySQL 8.0.25
 * Firefox
 
+> It is perfectly okay to run this project on Windows. However, the Redis project does not officially support Windows (you can install the Windows one that was developed by Microsoft on [this link](https://github.com/microsoftarchive/redis/releases) whose latest release is 3.0.504). 
+
 ## Test cases
 ### Case 1: No method is applied to prevent error
 
