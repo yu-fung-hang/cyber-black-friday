@@ -92,7 +92,7 @@ Here are a few steps to create the scene that lots of people are ordering the sa
    | the whole process                       | ≈ 16s          |
 
 ## Conclusion
-Not only does Redis prevent the system from generating more orders, but it also helps decrease runtime significantly.
+Not only does Redis prevent the system from generating excess orders, but it also helps decrease runtime significantly.
 
 ## Credit
 * The main idea of this project is from a Chinese book called [*Java EE 互联网轻量级框架整合开发*](http://www.broadview.com.cn/book/80). However, I made a lot of improvements on it.
